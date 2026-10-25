@@ -1,2 +1,5 @@
 scenes/*.blend1
 __pycache__/
+
+# Front camera candidate is a local low-resolution draft.
+renders/interior-front.png

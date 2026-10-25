@@ -2,17 +2,21 @@
 
 A procedural Blender reconstruction inspired by the supplied elevated funicular-station image. This repository tests **baseline → written realism report → implementation → comparison**.
 
-## Latest comparison: shape and composition pass
+## Latest comparison: station interior and lower viewpoint
 
-The new pass uses curved profiles, lathed vessels, shared leaf meshes and Bézier vines. It also changes the framing, city, atmosphere and lighting; this is an art-direction iteration rather than a controlled geometry-only benchmark.
+The station now has a complete five-metre-deep shell, a café, a waiting area and a rear passage. The main view moves lower and farther left to show the side wall; the companion close-up looks through the front openings into the rooms. The roof remains intact.
 
-| Previous improved scene | New shape pass |
+| Previous shape pass | New station and viewpoint |
 | --- | --- |
-| ![Previous improved render](renders/improved.png) | ![New shape pass](renders/refined.png) |
+| ![Previous shape pass](renders/refined.png) | ![Station with full interior](renders/interior.png) |
 
-[Full-size previous render](renders/improved.png) · [Full-size new render](renders/refined.png) · [Original baseline](renders/baseline.png)
+[Full-size new exterior](renders/interior.png) · [Full-size interior close-up](renders/interior-detail.png) · [Previous render](renders/refined.png)
 
-The new editable scene is [scenes/refined.blend](scenes/refined.blend). Read [the shape evaluation](research/shape-pass-report.md) for the reasoning and [the pass results](research/shape-pass-results.md) for observed changes and remaining gaps.
+### Interior close-up
+
+![Café, waiting bench and rear passage](renders/interior-detail.png)
+
+Read [the interior design report](research/interior-pass-report.md) and [observations](research/interior-pass-results.md). Editable scenes: [exterior](scenes/interior.blend) and [close-up](scenes/interior-detail.blend). The earlier [baseline](renders/baseline.png), [material pass](renders/improved.png), and [shape-pass report](research/shape-pass-report.md) remain available.
 
 ## Reproduce
 
@@ -24,10 +28,12 @@ mkdir -p scenes renders
 blender -b --python-exit-code 1 -t 5 --python scene.py -- --stage baseline --samples 64
 blender -b --python-exit-code 1 -t 5 --python scene.py -- --stage improved --samples 64
 blender -b --python-exit-code 1 -t 5 --python refine_scene.py -- --samples 96
+blender -b --python-exit-code 1 -t 5 --python interior_scene.py -- --view left --samples 96
+blender -b --python-exit-code 1 -t 5 --python interior_scene.py -- --view detail --samples 96
 ```
 
 Outputs: editable `scenes/baseline.blend`, `scenes/improved.blend` and corresponding PNGs under `renders/`. The third command loads `scenes/improved.blend` and creates `scenes/refined.blend` plus `renders/refined.png` at 1440 × 960. Use `--samples 24 --scale 60` on `refine_scene.py` for a quick draft; this overwrites only the refined outputs. Open any scene in Blender to inspect objects, materials and camera. Render output locations are resolved relative to the scene file. Run generation from this repository root.
 
 Read [the improvement report](research/realism-report.md) and [results](research/results.md). The renders use actual geometry and Cycles, not image generation. This is a stylized approximation; the original's detail and photorealism are not guaranteed.
 
-`./render.sh` reproduces all three stages. To rerender only the latest pass, run the `refine_scene.py` command with the existing improved scene. No add-on or external AI mesh service is required; the procedural geometry is constructed through the Blender Python API.
+`./render.sh` reproduces all stages. To rerender only the latest pass, run the two `interior_scene.py` commands with the existing `scenes/refined.blend`. They write 1440 × 960 images and compressed editable scenes. For quick camera tests, `interior_scene.py -- --view all --samples 20 --scale 50` generates three draft PNGs; rerun the two full-size commands afterwards to restore the final images. No add-on or external AI mesh service is required; the procedural geometry is constructed through the Blender Python API.
