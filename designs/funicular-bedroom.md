@@ -2,7 +2,7 @@
 
 A standalone object design brief for a decommissioned funicular car converted into a personal bedroom. The character is **neon, punk and cozy**: an old machine that someone has repaired, adapted and made their own.
 
-This is a proposed design, ready for blockout. The existing station renders have not been changed by this brief. Dimensions are working targets to verify in the standalone model.
+This is the approved design brief. Its first standalone implementation is documented in [the build notes](../research/funicular-bedroom-build.md); the existing station renders remain unchanged. Dimensions below are design targets, with measured clearances recorded in the build notes.
 
 ## The central idea
 

@@ -52,6 +52,8 @@ def box(name, center, size, mat, edge=0):
         (0, 4, 6, 2), (1, 3, 7, 5), (0, 1, 5, 4),
         (2, 6, 7, 3), (0, 2, 3, 1), (4, 5, 7, 6),
     ]
+    # Outward winding matters for dielectric interfaces such as window glass.
+    faces = [tuple(reversed(face)) for face in faces]
     obj = _mesh_object(name, vertices, faces, mat, center)
     if edge:
         bevel = obj.modifiers.new('Rounded manufactured edge', 'BEVEL')
