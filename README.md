@@ -2,6 +2,10 @@
 
 A procedural Blender reconstruction inspired by the supplied elevated funicular-station image. This repository tests **baseline → written realism report → implementation → comparison**.
 
+## Standalone object study: funicular bedroom
+
+[Read the **LAST STOP** design brief](designs/funicular-bedroom.md): a parked funicular converted into a neon, punk and cozy bedroom. The brief defines the layout, materials, lighting and modeling priorities; it has not yet been implemented as a new asset.
+
 ## Latest comparison: station interior and lower viewpoint
 
 The station now has a complete five-metre-deep shell, a café, a waiting area and a rear passage. The main view moves lower and farther left to show the side wall; the companion close-up looks through the front openings into the rooms. The roof remains intact.
